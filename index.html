@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Resume website of Deepanshi Srivastava, BBA student interested in business analytics and business analysis.">
+  <title>Deepanshi Srivastava | Resume</title>
+  <style>
+    /* ---------- Base styles ---------- */
+    :root {
+      --navy: #17365d;
+      --navy-dark: #102844;
+      --blue: #dceaf7;
+      --ink: #263445;
+      --muted: #647386;
+      --line: #e3e9ef;
+      --paper: #ffffff;
+      --soft: #f5f8fb;
+      --shadow: 0 12px 34px rgba(23, 54, 93, .07);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      background: #f3f6f9;
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: var(--navy); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .site-header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .nav-wrap {
+      max-width: 1120px; margin: auto; padding: 0 26px;
+      min-height: 68px; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+    }
+    .brand { color: var(--navy-dark); font-weight: 800; letter-spacing: .02em; }
+    .nav-links { display: flex; align-items: center; gap: 21px; }
+    .nav-links a { color: #526174; font-size: .88rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--navy); text-decoration: none; }
+    .menu-toggle {
+      display: none; border: 1px solid var(--line); background: white;
+      color: var(--navy); border-radius: 8px; padding: 8px 11px;
+      font-size: 1.15rem; cursor: pointer;
+    }
+    .container { width: min(100% - 40px, 1020px); margin: 34px auto 60px; }
+    .resume { background: var(--paper); border: 1px solid #e8edf2; border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; }
+    .hero {
+      padding: 62px 68px 54px;
+      background: linear-gradient(115deg, #fff 58%, #f0f6fc 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-layout { display: flex; align-items: center; gap: 30px; }
+    .hero-copy { flex: 1; min-width: 0; }
+    .profile-photo {
+      width: 154px; height: 154px; flex: 0 0 154px;
+      object-fit: cover; object-position: center;
+      border-radius: 50%; border: 5px solid #fff;
+      box-shadow: 0 5px 22px rgba(23,54,93,.14);
+      outline: 1px solid #dce6ef;
+    }
+    .eyebrow {
+      color: #53769c; text-transform: uppercase; letter-spacing: .17em;
+      font-size: .72rem; font-weight: 800; margin: 0 0 12px;
+    }
+    h1 { margin: 0; color: var(--navy-dark); font-size: clamp(2.35rem, 5vw, 3.65rem); line-height: 1.1; letter-spacing: -.045em; }
+    .hero-title { margin: 13px 0 12px; color: var(--navy); font-size: 1.18rem; font-weight: 700; }
+    .hero-intro { max-width: 690px; color: #5c6b7b; margin: 0; font-size: 1rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 24px; color: #5b6877; font-size: .9rem; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--navy); border-radius: 8px; padding: 10px 17px;
+      font: inherit; font-size: .9rem; font-weight: 700; cursor: pointer;
+      transition: background .15s ease, color .15s ease;
+    }
+    .btn-primary { color: white; background: var(--navy); }
+    .btn-primary:hover { background: var(--navy-dark); text-decoration: none; }
+    .btn-secondary { color: var(--navy); background: white; }
+    .btn-secondary:hover { background: var(--blue); text-decoration: none; }
+    .content { padding: 12px 68px 54px; }
+    section { padding-top: 34px; }
+    .section-heading {
+      display: flex; align-items: center; gap: 13px; margin: 0 0 19px;
+      color: var(--navy-dark); font-size: 1.12rem; letter-spacing: .01em;
+    }
+    .section-heading::after { content: ""; height: 1px; background: var(--line); flex: 1; }
+    .section-heading span { white-space: nowrap; }
+    .about-copy { max-width: 820px; margin: 0; color: #536273; }
+    .entry { padding: 0 0 20px 18px; border-left: 2px solid #d9e6f2; position: relative; }
+    .entry:last-child { padding-bottom: 0; }
+    .entry::before {
+      content: ""; position: absolute; left: -6px; top: 7px;
+      width: 10px; height: 10px; border-radius: 50%; background: #6d91b7;
+      border: 2px solid white; box-shadow: 0 0 0 1px #cbd9e7;
+    }
+    .entry-top { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+    .entry h3 { margin: 0; color: #263e59; font-size: 1rem; }
+    .entry .sub { color: #637386; font-size: .91rem; margin: 3px 0 7px; }
+    .date { color: #6d7e90; font-size: .83rem; font-weight: 700; white-space: nowrap; }
+    .entry p { color: #566577; margin: 7px 0 0; font-size: .93rem; }
+    ul.detail-list { margin: 9px 0 0; padding-left: 19px; color: #566577; font-size: .92rem; }
+    ul.detail-list li { margin: 6px 0; padding-left: 3px; }
+    .skill-groups { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+    .skill-card { background: var(--soft); border: 1px solid #e8eef4; border-radius: 11px; padding: 17px 18px; }
+    .skill-card h3 { margin: 0 0 11px; color: #294666; font-size: .94rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { background: white; border: 1px solid #dce6ef; border-radius: 6px; padding: 5px 9px; color: #526477; font-size: .83rem; }
+    .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .contact-item { border: 1px solid var(--line); border-radius: 9px; padding: 12px 14px; min-width: 0; }
+    .contact-label { display: block; color: #7a8998; text-transform: uppercase; letter-spacing: .1em; font-size: .68rem; font-weight: 800; }
+    .contact-value { display: block; color: #294666; font-size: .9rem; overflow-wrap: anywhere; margin-top: 3px; }
+    .small-note { color: #7b8997; font-size: .82rem; margin: 18px 0 0; }
+    footer { text-align: center; color: #8a97a4; font-size: .8rem; padding: 22px 10px 0; }
+    @media (max-width: 760px) {
+      .nav-wrap { min-height: 62px; padding: 0 18px; }
+      .menu-toggle { display: inline-block; }
+      .nav-links {
+        display: none; position: absolute; top: 61px; left: 0; right: 0;
+        background: white; border-bottom: 1px solid var(--line);
+        padding: 15px 22px 19px; flex-direction: column; align-items: flex-start; gap: 13px;
+      }
+      .nav-links.open { display: flex; }
+      .container { width: min(100% - 24px, 1020px); margin: 18px auto 35px; }
+      .hero { padding: 43px 27px 38px; }
+      .hero-layout { flex-direction: column-reverse; align-items: flex-start; gap: 22px; }
+      .profile-photo { width: 118px; height: 118px; flex-basis: 118px; }
+      .content { padding: 5px 27px 38px; }
+      .skill-groups { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-meta { flex-direction: column; gap: 7px; }
+      .entry-top { display: block; }
+      .date { display: block; margin-top: 3px; }
+      .hero-actions .btn { width: 100%; }
+    }
+    /* Print styles: keep the resume clean on paper and when saved as PDF. */
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      body { background: white; color: #222; font-size: 10pt; }
+      .site-header, .hero-actions, footer { display: none !important; }
+      .container { width: 100%; margin: 0; }
+      .resume { border: 0; border-radius: 0; box-shadow: none; }
+      .hero { padding: 10px 0 20px; background: white; }
+      .profile-photo { width: 112px; height: 112px; flex-basis: 112px; box-shadow: none; }
+      .content { padding: 0 0 10px; }
+      section { padding-top: 19px; break-inside: avoid; }
+      .skill-card, .contact-item { break-inside: avoid; }
+      a { color: #263445; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#home">DS.</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="resume">
+      <section class="hero" id="home">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Personal Resume</p>
+            <h1>Deepanshi Srivastava</h1>
+            <p class="hero-title">BBA Student · Aspiring Business Analyst</p>
+            <p class="hero-intro">Motivated business student interested in using data, business understanding and clear communication to support better decisions and organizational growth.</p>
+            <div class="hero-meta">
+              <span>⌖ Greater Noida, India</span>
+              <span>✉ <a href="mailto:srivastavadeepanshi14@gmail.com">srivastavadeepanshi14@gmail.com</a></span>
+              <span>☎ <a href="tel:+918299405069">+91 8299405069</a></span>
+            </div>
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="printButton" type="button">Print / Save as PDF</button>
+              <a class="btn btn-secondary" href="https://www.linkedin.com/in/srivastavadeepanshi14" target="_blank" rel="noopener noreferrer">View LinkedIn Profile</a>
+            </div>
+          </div>
+          <img class="profile-photo" src="./photo.jpg" alt="Profile photo of Deepanshi Srivastava">
+        </div>
+      </section>
+
+      <div class="content">
+        <section id="about">
+          <h2 class="section-heading"><span>About Me</span></h2>
+          <p class="about-copy">Motivated and enthusiastic BBA student with an interest in marketing, sales, and business development. I have good communication skills, a willingness to learn, and the ability to adapt to new challenges. Looking for an opportunity to gain practical experience, develop my professional skills, and contribute to the growth of the organization.</p>
+          <p class="about-copy" style="margin-top:10px;"><strong>Career Objective:</strong> To build a career as a Business Analyst and apply business knowledge, analytical thinking, and communication skills to solve practical business problems.</p>
+        </section>
+
+        <section id="education">
+          <h2 class="section-heading"><span>Education</span></h2>
+          <div class="entry">
+            <div class="entry-top">
+              <h3>Bachelor of Business Administration (BBA) — Business Analytics</h3>
+              <span class="date">2024 – 2027</span>
+            </div>
+            <p class="sub">Galgotias University</p>
+            <p>CGPA: 8.2</p>
+          </div>
+        </section>
+
+        <section id="skills">
+          <h2 class="section-heading"><span>Skills</span></h2>
+          <div class="skill-groups">
+            <div class="skill-card">
+              <h3>Technical Skills</h3>
+              <div class="tags"><span class="tag">MS Excel</span><span class="tag">PowerPoint</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Power BI</span></div>
+            </div>
+            <div class="skill-card">
+              <h3>Management Skills</h3>
+              <div class="tags"><span class="tag">Time Management</span><span class="tag">Teamwork</span><span class="tag">Leadership</span><span class="tag">Problem-Solving</span><span class="tag">Planning &amp; Organizing</span></div>
+            </div>
+            <div class="skill-card">
+              <h3>Soft Skills</h3>
+              <div class="tags"><span class="tag">Strong Communication</span><span class="tag">Active Listening</span></div>
+            </div>
+            <div class="skill-card">
+              <h3>Languages</h3>
+              <div class="tags"><span class="tag">Hindi</span><span class="tag">English</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience">
+          <h2 class="section-heading"><span>Internship Experience</span></h2>
+          <div class="entry">
+            <div class="entry-top">
+              <h3>Marketing Intern · RKM The Web Builder</h3>
+              <span class="date">July – September 2026 · 2 months</span>
+            </div>
+            <ul class="detail-list">
+              <li>Researched target markets and analyzed competitor footprints to identify potential businesses lacking strong online assets, mapping out service opportunities across SEO, web design, and digital promotion.</li>
+              <li>Evaluated multi-channel marketing campaigns and organized prospective client data to help reach high-intent leads, tailor service proposals to their needs, and support client conversion efforts.</li>
+              <li>Analyzed campaign performance indicators, including reach, engagement, and conversion drop-offs, and presented actionable growth strategies to senior leadership.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="projects">
+          <h2 class="section-heading"><span>Projects</span></h2>
+          <div class="entry">
+            <div class="entry-top">
+              <h3>Retail Sales Performance Analytics &amp; BI Dashboards</h3>
+            </div>
+            <ul class="detail-list">
+              <li>Cleaned and transformed 600+ retail sales records using SQL and Python (Pandas), handling missing values, removing duplicates, and calculating net sales after discounts to prepare a structured dataset.</li>
+              <li>Built an interactive dashboard tracking key metrics such as Total Revenue, Orders, and Average Order Value (AOV), with monthly sales trends and city-wise demand.</li>
+              <li>Used the analysis to identify top-selling categories and customer payment preferences.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="achievements">
+          <h2 class="section-heading"><span>Certifications &amp; Activities</span></h2>
+          <div class="entry">
+            <h3>The Smart Fellowship · Workverse</h3>
+            <p class="sub">40 hours of simulation training</p>
+          </div>
+          <div class="entry" style="margin-top:18px;">
+            <div class="entry-top">
+              <h3>Community Service Volunteer · Challengers Group Trust</h3>
+              <span class="date">May 2026</span>
+            </div>
+            <ul class="detail-list">
+              <li>Completed 10 days of community fieldwork, providing foundational literacy and basic numeracy instruction to underprivileged and slum children across Noida and Greater Noida.</li>
+              <li>Conducted interactive learning sessions, educational quizzes, and awareness drives on personal hygiene and education to encourage student confidence and engagement.</li>
+            </ul>
+          </div>
+          <div class="entry" style="margin-top:18px;">
+            <h3>Interest</h3>
+            <p>Travelling</p>
+          </div>
+        </section>
+
+        <section id="contact">
+          <h2 class="section-heading"><span>Contact</span></h2>
+          <div class="contact-grid">
+            <div class="contact-item">
+              <span class="contact-label">Email</span>
+              <a class="contact-value" href="mailto:srivastavadeepanshi14@gmail.com">srivastavadeepanshi14@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Phone</span>
+              <a class="contact-value" href="tel:+918299405069">+91 8299405069</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Location</span>
+              <span class="contact-value">Greater Noida, India</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">LinkedIn</span>
+              <a class="contact-value" href="https://www.linkedin.com/in/srivastavadeepanshi14" target="_blank" rel="noopener noreferrer">linkedin.com/in/srivastavadeepanshi14</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </article>
+    <footer>© <span id="year"></span> Deepanshi Srivastava · Personal Resume</footer>
+  </main>
+
+  <script>
+    // Mobile navigation toggle.
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+      menuToggle.textContent = isOpen ? '×' : '☰';
+    });
+
+    // Close the mobile menu after selecting a section.
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // The browser print dialog also provides the "Save as PDF" option.
+    document.getElementById('printButton').addEventListener('click', () => window.print());
+
+    // Keep the footer year current.
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
